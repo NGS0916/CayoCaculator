@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script>
+        function caculator() {
+            var total;
+            var gta5 = document.gta5;
+            var purpose = parseInt(gta5.purpose.value);
+            var people = gta5.people.value;
+            var difficulty = gta5.difficulty.value;
+            var elite = gta5.elite.value;
+
+
+            var gold = 4984;
+            var cocaine = 4450;
+            var marihyana = 3921;
+            var cash = 3542;
+            var picture = 187000;
+
+            var goldcount = parseInt(gta5.gold.value) * 66
+                , cocainecount = parseInt(gta5.cocaine.value) * 50
+                , marihyanacount = parseInt(gta5.marihyana.value) * 37
+                , cashcount = parseInt(gta5.cash.value) * 25
+                , picturecount = parseInt(gta5.picture.value);
+
+            total = purpose;
+            total = (difficulty == "hard") ? total *= 1.1 : total;
+
+
+            for (var i = 0; i < 100 * people;) {
+                if (picturecount > 0) {
+                    total += picture;
+                    i += 50;
+                    picturecount--;
+                    continue;
+
+                }
+                if (goldcount > 0) {
+                    total += gold;
+                    goldcount--;
+                    i++;
+                    continue;
+                }
+                if (cocainecount > 0) {
+                    total += cocaine;
+                    cocainecount--;
+                    i++;
+                    continue;
+                }
+                if (marihyanacount > 0) {
+                    total += marihyana;
+                    marihyanacount--;
+                    i++;
+                    continue;
+                }
+                if (cashcount > 0) {
+                    total += cash;
+                    cashcount--;
+                    i++;
+                    continue;
+                }
+                break;
+
+            }
+            total2 = total * 0.88;
+            document.getElementById("aaa").innerText = Math.floor(total);
+            document.getElementById("p100").innerText = Math.floor(total2);
+            for(var tot = 85;tot>=15;tot-=5){
+                var totala = total2 * tot*0.01
+                if(elite == "Sucess"){
+                    if(difficulty == "hard"){
+                        totala+=100000;
+                    }else{
+                        totala+=50000;
+                    }
+                }
+                document.getElementById("p"+tot).innerText = Math.floor(totala);
+            }
+
+            
+
+            document.getElementsByClassName("color100")[0].style.color = "black"
+            document.getElementsByClassName("color100")[1].style.color = "black"
+            document.getElementsByClassName("color85")[0].style.color = "black"
+            document.getElementsByClassName("color85")[1].style.color = "black"
+            document.getElementsByClassName("color70")[0].style.color = "black"
+            document.getElementsByClassName("color70")[1].style.color = "black"
+            document.getElementsByClassName("color55")[0].style.color = "black"
+            document.getElementsByClassName("color55")[1].style.color = "black"
+            document.getElementsByClassName("color15")[0].style.color = "blue"
+            document.getElementsByClassName("color15")[1].style.color = "blue"
+
+
+            switch(people){
+                case "1" :
+                    document.getElementsByClassName("color100")[0].style.color = "red"
+                    document.getElementsByClassName("color100")[1].style.color = "red"
+                    document.getElementsByClassName("color15")[0].style.color = "black"
+                    document.getElementsByClassName("color15")[1].style.color = "black"
+                    break;
+                case "2":
+                    document.getElementsByClassName("color85")[0].style.color = "red"
+                    document.getElementsByClassName("color85")[1].style.color = "red"
+                    break;
+                case "3":
+                    document.getElementsByClassName("color70")[0].style.color = "red"
+                    document.getElementsByClassName("color70")[1].style.color = "red"
+                    break;
+                case "4":
+                    document.getElementsByClassName("color55")[0].style.color = "red"
+                    document.getElementsByClassName("color55")[1].style.color = "red"
+                    break;
+
+            }
+
+
+
+        }
+
+
+
+
+    </script>
+
+    <style>
+
+        #title{
+            text-align: center;
+            font-weight: bold;
+        }
+        *{
+            font-weight: bold
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1 id="title">카요페리코 계산기</h1>
+    <hr>
+    <div class="container show-grid">
+        <div class="row">
+        <div class="col-md-5">
+            <form action="" name="gta5" oninput="caculator()" onreset="caculator()">
+                <div class="a">
+                    <span>목표물 </span>
+                    <label>데킬라</label><input type="radio" name="purpose" value="900000" checked>
+                    <label>루비</label><input type="radio" name="purpose" value="1000000">
+                    <label>채권</label><input type="radio" name="purpose" value="1100000">
+                    <label>다이아</label><input type="radio" name="purpose" value="1300000">
+                    <label>팬서상</label><input type="radio" name="purpose" value="1900000">
+                </div>
+                <p>인원
+                    <label>1</label><input type="radio" name="people" value="1" checked>
+                    <label>2</label><input type="radio" name="people" value="2">
+                    <label>3</label><input type="radio" name="people" value="3">
+                    <label>4</label><input type="radio" name="people" value="4">
+                <p>난이도
+                    <label>보통 : </label><input type="radio" name="difficulty" value="normal" checked>
+                    <label>어려움 : </label><input type="radio" name="difficulty" value="hard">
+                <p>엘리트
+                    <label>Fail : </label><input type="radio" name="elite" value="Fail" checked>
+                    <label>Sucess : </label><input type="radio" name="elite" value="Sucess">
+
+                <p>예술품 (우선적으로 담깁니다)
+                    <input type="range" id="picture" name="picture" min="0" max="8" step="1" value="0"
+                        oninput="xpicture.value=picture.value">
+                    <output name="xpicture">0</output><br>
+                <p>골드
+                    <input type="range" id="gold" name="gold" min="0" max="6" step="1" value="0"
+                        oninput="xgold.value=gold.value">
+                    <output name="xgold">0</output><br>
+                <p>코카인
+                    <input type="range" id="cocaine" name="cocaine" min="0" max="8" step="1" value="0"
+                        oninput="xcocaine.value=cocaine.value">
+                    <output name="xcocaine">0</output><br>
+                <p>마리하나
+                    <input type="range" id="marihyana" name="marihyana" min="0" max="12" step="1" value="0"
+                        oninput="xmarihyana.value=marihyana.value">
+                    <output name="xmarihyana">0</output><br>
+                <p>현금
+                    <input type="range" id="cash" name="cash" min="0" max="16" step="1" value="0"
+                        oninput="xcash.value=cash.value">
+                    <output name="xcash">0</output><br>
+                <p>오늘의 금고
+                    <input type="range" id="gold" name="gold" min="0" max="6" step="1" value="0"
+                        oninput="xgold.value=gold.value">
+                    <output name="xgold">0</output><br>
+                <p>
+                    <input type="reset">
+                </p>
+
+            </form>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>순수 총액  </td>
+                        <td><span id="aaa"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="color100">100% (1인호스트)  </td>
+                        <td><span id="p100" class="color100"></span></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="color85">85%  (2인호스트)  </td>
+                        <td><span id="p85" class="color85"></span></td>
+                    </tr>
+                    <tr>
+                        <td>80% </td>
+                        <td><span id="p80"></span></td>
+                    </tr>
+                    <tr>
+                        <td>75% </td>
+                        <td><span id="p75"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="color70">70% (3인호스트)  </td>
+                        <td><span id="p70" class="color70"></span></td>
+                    </tr>
+                    <tr>
+                        <td>65%  </td>
+                        <td><span id="p65"></span></td>
+                    </tr>
+                    <tr>
+                        <td>60%  </td>
+                        <td><span id="p60"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="color55">55%  (4인호스트)  </td>
+                        <td><span id="p55" class="color55"></span></td>
+                    </tr>
+                    <tr>
+                        <td>50%  </td>
+                        <td><span id="p50"></span></td>
+                    </tr>
+                    <tr>
+                        <td>45%</td>
+                        <td><span id="p45"></span></td>
+                    </tr>
+                    <tr>
+                        <td>40%</td>
+                        <td><span id="p40"></span></td>
+                    </tr>
+                    <tr>
+                        <td>35%</td>
+                        <td><span id="p35"></span></td>
+                    </tr>
+                    <tr>
+                        <td>30%</td>
+                        <td><span id="p30"></span></td>
+                    </tr>
+                    <tr>
+                        <td>25%</td>
+                        <td><span id="p25"></span></td>
+                    </tr>
+                    <tr>
+                        <td>20%</td>
+                        <td><span id="p20"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="color15">15%(게스트) : </td>
+                        <td><span id="p15" class="color15"></span></td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+    </div></div>
+
+
+
+
+</body>
+
+</html>
