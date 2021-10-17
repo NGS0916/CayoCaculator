@@ -70,7 +70,16 @@
             }
             total2 = total * 0.88;
             document.getElementById("aaa").innerText = Math.floor(total);
-            document.getElementById("p100").innerText = Math.floor(total2);
+            if(elite == "Sucess"){
+                    if(difficulty == "hard"){
+                        document.getElementById("p100").innerText = Math.floor(total2+100000);
+                    }else{
+                        document.getElementById("p100").innerText = Math.floor(total2+50000);
+                    }
+                }else{
+                    document.getElementById("p100").innerText = Math.floor(total2);
+                }
+            
             for(var tot = 85;tot>=15;tot-=5){
                 var totala = total2 * tot*0.01
                 if(elite == "Sucess"){
