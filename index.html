@@ -8,6 +8,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script>
+        function reset(){
+            location.reload(true);
+        }
+
         function caculator() {
             var total;
             var gta5 = document.gta5;
@@ -146,8 +150,103 @@
         *{
             font-weight: bold
         }
+        input[type=radio]{
+            margin-left:3px ;
+
+        }
+
+        /* Range css */
+        input[type=range]{
+            margin-top:2% ;
+        }
+        input[type=range]::-webkit-slider-runnable-track { 
+            width: 300px;
+            height: 3px;
+            background: black;
+            border: none;
+            border-radius: 2px;
+        } 
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #74B643;
+            margin-top: -6px; 
+        } 
+
+        input[type=range]:focus {
+            outline: none; 
+        } 
 
 
+        /* range 색갈 */
+        input[id=gold]::-webkit-slider-runnable-track { 
+            background: gold;
+        }
+        input[id=cash]::-webkit-slider-runnable-track { 
+            background: green;
+        }
+        input[id=cocaine]::-webkit-slider-runnable-track { 
+            background: silver;
+        }
+        input[id=picture]::-webkit-slider-runnable-track { 
+            background: rgb(165, 45, 45);
+        }
+        input[id=marihyana]::-webkit-slider-runnable-track { 
+            background: rgb(212, 85, 206);
+        }
+
+        /* 라디오 클릭 색변환 */
+        input[type = radio]:checked + label{
+            color: rgb(47, 0, 255);
+        }
+        /* 목표물, 인원 구분선 */
+        .radiospan{
+            border-right: 1px double rgb(94, 82, 82);
+        }
+
+/*온오프 스위치*/
+.onoffRadio {
+	display: inline-block;
+	overflow: hidden;
+}
+.onoffRadio-Radio {
+	float: left;
+	display: inline-block;
+}
+.onoffRadio-Radio input[type=radio] {
+	display: none;
+}
+.onoffRadio-Radio label {
+	display: inline-block;
+	padding: 0px 10px;   
+	line-height: 20px;    
+	border: 1px solid #999;
+	border-right: none;
+	cursor: pointer;
+	user-select: none;   
+}
+ 
+.onoffRadio .off label {
+	border-radius: 6px 0 0 6px;
+}
+.onoffRadio .on label {
+	border-radius: 0 6px 6px 0;
+	border-right: 1px solid #999;
+}
+ 
+/* Checked */
+.onoffRadio .off input[type=radio]:checked + label {
+	background: #ffc5c5;
+    color: red;
+}
+.onoffRadio .on input[type=radio]:checked + label {
+	background: #bbffbb;
+}
+/*  */
     </style>
 </head>
 
@@ -157,26 +256,68 @@
     <div class="container show-grid">
         <div class="row">
         <div class="col-md-5">
-            <form action="" name="gta5" oninput="caculator()" onreset="caculator()">
-                <div class="a">
+            <form action="" name="gta5" oninput="caculator()">
+                <div>
                     <span>목표물 </span>
-                    <label>데킬라</label><input type="radio" name="purpose" value="900000" checked>
-                    <label>루비</label><input type="radio" name="purpose" value="1000000">
-                    <label>채권</label><input type="radio" name="purpose" value="1100000">
-                    <label>다이아</label><input type="radio" name="purpose" value="1300000">
-                    <label>팬서상</label><input type="radio" name="purpose" value="1900000">
+                    <span class="radiospan">
+                        <input type="radio" name="purpose" value="900000" checked>
+                        <label>데킬라</label>
+                    </span>
+                    <span class="radiospan">
+                        <input type="radio" name="purpose" value="1000000">
+                        <label>루비</label>
+                    </span>
+                    <span class="radiospan">
+                        <input type="radio" name="purpose" value="1100000">
+                        <label>채권</label>
+                    </span>
+                    <span class="radiospan">
+                        <input type="radio" name="purpose" value="1300000">
+                        <label>다이아</label>
+                    </span>
+                        <input type="radio" name="purpose" value="1900000">
+                        <label>팬서상</label>
                 </div>
                 <p>인원
-                    <label>1</label><input type="radio" name="people" value="1" checked>
-                    <label>2</label><input type="radio" name="people" value="2">
-                    <label>3</label><input type="radio" name="people" value="3">
-                    <label>4</label><input type="radio" name="people" value="4">
-                <p>난이도
-                    <label>보통 : </label><input type="radio" name="difficulty" value="normal" checked>
-                    <label>어려움 : </label><input type="radio" name="difficulty" value="hard">
-                <p>엘리트
-                    <label>Fail : </label><input type="radio" name="elite" value="Fail" checked>
-                    <label>Sucess : </label><input type="radio" name="elite" value="Sucess">
+                    <span class="radiospan">
+                        <input  type="radio" name="people" value="1" checked>
+                        <label>1</label>
+                    </span>
+                    <span class="radiospan">
+                        <input type="radio" name="people" value="2">
+                        <label>2</label>
+                    </span>
+                    <span class="radiospan">
+                        <input type="radio" name="people" value="3">
+                        <label>3</label>
+                    </span>
+                    <input type="radio" name="people" value="4">
+                    <label>4</label>
+                <p style="float: left; margin-right: 10px;">난이도 : 
+                    <div class="onoffRadio">
+                        <div class="onoffRadio-Radio off">
+                            <input id="normal" type="radio" name="difficulty" value="normal" checked>
+                            <label for="normal">normal</label>
+                        </div>
+                        <div class="onoffRadio-Radio on">
+                            <input id="hard" type="radio" name="difficulty" value="hard">
+                            <label for="hard">hard</label>
+                        </div>
+                    </div>
+
+                 </p>   
+                <p style="float: left; margin-right: 10px;">엘리트 : 
+                    <div class="onoffRadio">
+                        <div class="onoffRadio-Radio off">
+                            <input id="Fail" type="radio" name="elite" value="Fail" checked>
+                            <label for="Fail">Fail</label>
+                        </div>
+                        <div class="onoffRadio-Radio on">
+                            <input id="Sucess" type="radio" name="elite" value="Sucess">
+                            <label for="Sucess">Sucess</label>
+                        </div>
+                    </div>
+                </p>
 
                 <p>예술품 (우선적으로 담깁니다)
                     <input type="range" id="picture" name="picture" min="0" max="8" step="1" value="0"
@@ -200,13 +341,13 @@
                     <output name="xcash">0</output><br>
 
                 <p>
-                    <input type="reset">
+                    <input type="reset" onclick="location.reload(true);">
                 </p>
 
             </form>
         </div>
         <div class="col-md-7">
-            <table class="table table-striped">
+            <table class="table table-hover ">
                 <thead>
                     <tr>
                         <td>순수 총액  </td>
