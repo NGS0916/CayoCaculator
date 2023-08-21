@@ -15,6 +15,7 @@
 
         function caculator() {
             var total;
+            var totalb;
             var gta5 = document.gta5;
             var purpose = parseInt(gta5.purpose.value);
             var people = gta5.people.value;
@@ -40,32 +41,32 @@
 
             for (var i = 0; i < 100 * people;) {
                 if (picturecount > 0) {
-                    total += picture;
+                    totalb += picture;
                     i += 50;
                     picturecount--;
                     continue;
 
                 }
                 if (goldcount > 0) {
-                    total += gold;
+                    totalb += gold;
                     goldcount--;
                     i++;
                     continue;
                 }
                 if (cocainecount > 0) {
-                    total += cocaine;
+                    totalb += cocaine;
                     cocainecount--;
                     i++;
                     continue;
                 }
                 if (marihyanacount > 0) {
-                    total += marihyana;
+                    totalb += marihyana;
                     marihyanacount--;
                     i++;
                     continue;
                 }
                 if (cashcount > 0) {
-                    total += cash;
+                    totalb += cash;
                     cashcount--;
                     i++;
                     continue;
@@ -73,6 +74,27 @@
                 break;
 
             }
+            if(difficulty == "hard")
+            {
+                switch(purpose){
+                    case 900000:
+                        totalb*=1.2;
+                        break;
+                    case 1000000:
+                        totalb*=1.1;
+                        break;
+                    case 1100000:
+                        totalb*=1.05;
+                        break;
+
+
+                }
+
+            }
+
+
+
+            total+=totalb;
             total2 = total * 0.88;
             document.getElementById("aaa").innerText = Math.floor(total);
             if(elite == "Sucess"){
