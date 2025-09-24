@@ -11,22 +11,22 @@
         function reset(){
             location.reload(true);
         }
-
-
         function caculator() {
             var total;
             var totalb=0;
             var gta5 = document.gta5;
-            var purpose = parseInt(gta5.purpose.value);
+            var purpose = gta5.purpose.value;
+            var purposevalue = 0;
             var people = gta5.people.value;
             var difficulty = gta5.difficulty.value;
+            var hour72 = gta5.hour72.value;
             var elite = gta5.elite.value;
 
 
             var gold = 4984;
-            var cocaine = 4450;
-            var marihyana = 3921;
-            var cash = 3542;
+            var cocaine = 4000;
+            var marihyana = 3546;
+            var cash = 3200;
             var picture = 187000;
 
             var goldcount = parseInt(gta5.gold.value) * 66
@@ -35,9 +35,27 @@
                 , cashcount = parseInt(gta5.cash.value) * 25
                 , picturecount = parseInt(gta5.picture.value);
 
-            total = purpose;
-            total = (difficulty == "hard") ? total *= 1.1 : total;
+           
+            switch(purpose){
+                case "데킬라":
+                    purposevalue = 630000;
+                    break;
+                case "루비":
+                    purposevalue = 700000;
+                    break;
+                case "채권":
+                    purposevalue = 770000;
+                    break;
+                case "다이아":
+                    purposevalue = 1300000;
+                    break;
+                case "팬서상":
+                    purposevalue = 1900000;
+                    break;
 
+            }
+            total = purposevalue;
+            total = (difficulty == "hard") ? total *= 1.1 : total;
 
             for (var i = 0; i < 100 * people;) {
                 if (picturecount > 0) {
@@ -74,20 +92,26 @@
                 break;
 
             }
-            if(difficulty == "hard")
+            
+
+            if(hour72 == "YES")
             {
                 switch(purpose){
-                    case 900000:
-                        totalb*=1.2;
-                        break;
-                    case 1000000:
-                        totalb*=1.1;
-                        break;
-                    case 1100000:
-                        totalb*=1.05;
-                        break;
-
-
+                case "데킬라":
+                    totalb*=1.2;
+                    break;
+                case "루비":
+                    totalb*=1.1;
+                    break;
+                case "채권":
+                    totalb*=1.05;
+                    break;
+                case "다이아":
+                    totalb*=1;
+                    break;
+                case "팬서상":
+                    totalb*=1;
+                    break;
                 }
 
             }
@@ -96,7 +120,9 @@
 
             total+=totalb;
             total2 = total * 0.88;
-            document.getElementById("aaa").innerText = Math.floor(total);
+            document.getElementById("tp100").innerText = Math.floor(total);
+            document.getElementById("tp10").innerText = Math.floor(total*0.1);
+            document.getElementById("tp2").innerText = Math.floor(total*0.02);
             if(elite == "Sucess"){
                     if(difficulty == "hard"){
                         document.getElementById("p100").innerText = Math.floor(total2+100000);
@@ -283,22 +309,22 @@
                 <div>
                     <span>목표물 </span>
                     <span class="radiospan">
-                        <input type="radio" name="purpose" value="900000" checked>
+                        <input type="radio" name="purpose" value="데킬라">
                         <label>데킬라</label>
                     </span>
                     <span class="radiospan">
-                        <input type="radio" name="purpose" value="1000000">
+                        <input type="radio" name="purpose" value="루비">
                         <label>루비</label>
                     </span>
                     <span class="radiospan">
-                        <input type="radio" name="purpose" value="1100000">
+                        <input type="radio" name="purpose" value="채권">
                         <label>채권</label>
                     </span>
                     <span class="radiospan">
-                        <input type="radio" name="purpose" value="1300000">
+                        <input type="radio" name="purpose" value="다이아">
                         <label>다이아</label>
                     </span>
-                        <input type="radio" name="purpose" value="1900000">
+                        <input type="radio" name="purpose" value="팬서상">
                         <label>팬서상</label>
                 </div>
                 <p>인원
@@ -341,7 +367,19 @@
                         </div>
                     </div>
                 </p>
+                <p style="float: left; margin-right: 10px;">72시간 이내 클리어 : 
+                    <div class="onoffRadio">
+                        <div class="onoffRadio-Radio off">
+                            <input id="hour72NO" type="radio" name="hour72" value="NO" checked>
+                            <label for="hour72NO">NO</label>
+                        </div>
+                        <div class="onoffRadio-Radio on">
+                            <input id="hour72YES" type="radio" name="hour72" value="YES">
+                            <label for="hour72YES">YES</label>
+                        </div>
+                    </div>
 
+                 </p>   
                 <p>예술품 (우선적으로 담깁니다)
                     <input type="range" id="picture" name="picture" min="0" max="8" step="1" value="0"
                         oninput="xpicture.value=picture.value">
@@ -374,7 +412,15 @@
                 <thead>
                     <tr>
                         <td>순수 총액  </td>
-                        <td><span id="aaa"></span></td>
+                        <td><span id="tp100"></span></td>
+                    </tr>
+                    <tr>
+                        <td>장물비용  </td>
+                        <td><span id="tp10"></span></td>
+                    </tr>
+                    <tr>
+                        <td>파벨몫  </td>
+                        <td><span id="tp2"></span></td>
                     </tr>
                     <tr>
                         <td class="color100">100% (1인호스트)  </td>
